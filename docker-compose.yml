@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  goapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: goreactstudy
+    volumes:
+      - .:/myapp
+    working_dir: /myapp
+    command: /bin/sh -c "while sleep 1000; do :; done"
+  dev-postgres:
+    image: postgres:15.1-alpine
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: udemy
+      POSTGRES_PASSWORD: udemy
+      POSTGRES_DB: udemy
+    restart: always
+    networks:
+      - lesson
+networks:
+  lesson:
+
