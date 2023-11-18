@@ -8,8 +8,14 @@ services:
     container_name: goreactstudy
     volumes:
       - .:/myapp
+      - $SSH_AUTH_SOCK:/ssh-agent
     working_dir: /myapp
-    command: /bin/sh -c "while sleep 1000; do :; done"
+    command: /bin/sh -c "eval $(ssh-agent -s) && while sleep 1000; do :; done"
+    environment:
+      - SSH_AUTH_SOCK=/ssh-agent
+    networks:
+      - lesson
+
   dev-postgres:
     image: postgres:15.1-alpine
     ports:
@@ -21,6 +27,6 @@ services:
     restart: always
     networks:
       - lesson
+
 networks:
   lesson:
-
