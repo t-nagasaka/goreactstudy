@@ -1,10 +1,22 @@
 {
   "name": "Go Dev Container",
-  "dockerFile": "../Dockerfile",
-  "extensions": [
-    "golang.Go"
+  "dockerComposeFile": [
+    "../docker-compose.yml"
   ],
-  "settings": {
-    "go.gopath": "/go"
-  },
+  "service": "app",
+  "runServices": ["app"],
+  "workspaceFolder": "/myapp",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.Go",
+        "oderwat.indent-rainbow",
+        "formulahendry.auto-close-tag"
+      ],
+      "settings": {
+        "go.gopath": "/go",
+        "extensions.verifySignature": false
+      }
+    }
+  }
 }
