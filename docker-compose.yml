@@ -6,6 +6,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: goreactstudy
+    ports:
+      - 1323:1323
     volumes:
       - .:/myapp
     working_dir: /myapp
